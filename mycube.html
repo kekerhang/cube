@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>MyCube</title>
+ 
+ <script src="src/jquery.min.js"></script>
+ <script type="text/javascript"src="src/RangeSlider.js"></script>
+ <link rel="stylesheet" href="src/slider.css" type="text/css">
+ <link rel="stylesheet" href="src/color.css" type="text/css">
+ <link rel="stylesheet" href="src/color.css" type="text/css" id="color">
+ <link rel="stylesheet" href="src/cube.css" type="text/css">
+
+ <style id="keyf">
+ @-webkit-keyframes spin  
+       {  
+           from  
+           {  
+               -webkit-transform: translateZ(-10em) rotateX(0deg) rotateY(0deg); 
+               /*transform: translateZ(-10em) rotateX(0) rotateY(0deg);  */
+           }  
+  
+           to  
+           {  
+               -webkit-transform: translateZ(-10em) rotateX(720deg) rotateY(720deg);  
+               /*transform: translateZ(-10em) rotateX(360deg) rotateY(0deg);  */
+           }  
+       }  
+ </style>
+ <style>
+     
+.stage{  
+      -webkit-perspective: 1000px;  
+      width: 20em;  
+      height: 20em;  
+      left: 50%;  
+      top: 50%;  
+      margin-left: -10em;  
+      margin-top: -10em;  
+      position: absolute;  
+       }  
+ #control{
+ 	width: 25px;
+ 	height: 25px;
+ 	border: 2px solid lightgray;
+ 	border-radius: 3px;
+ 	float: right;
+ 	overflow:hidden;
+ 	background: darkgray;
+ 	opacity: 0.2;
+ 	white-space: nowrap;
+ 	transition: width 1s ,height 1.6s,opacity 2s;
+ }
+ #control:hover{
+ 	width: 300px;
+ 	height: 350px;
+ 	opacity: 0.8;
+ }
+#mb{
+	width:260px;
+	height:280px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top:10px;
+	margin-bottom:2px;
+	padding:10px;
+	border:1px solid white;
+	border-radius:2px;
+}
+.bt{
+	font-family:黑体;
+	font-size:20px;
+	font-weight:400;
+}
+#tx,#ty,#tz{
+	color:brown;
+	font-size:15px;
+	font-weight:600;
+}
+.lis{
+	font-size:20px;
+	font-weight:700;
+	
+}
+#btn{
+	font-size:15px;
+	width:40px;
+	background:darkgray;
+	color:white;
+	border-radius:10px;
+}
+#cc{
+	width:200px;
+	height: 35px;
+	margin: 20px auto;
+	border: 1px solid lightgreen;
+	background: gold;
+	border-radius: 30px;
+	text-align: center;
+	font-size: 26px;
+	cursor:pointer;
+	box-shadow: 1px 1px 1px goldenrod;
+}
+ </style>
+ 
+ 
+ <script>
+
+ function changecolor(){
+	alert("ChangeColor!");
+	$("#color").attr("href","src/newcolor.css");
+
+}
+
+ function changeA(){
+ 	 x = Math.round($("#rolex").val()/10)*360;
+ 	 y = Math.round($("#roley").val()/10)*360;
+	 z = -10+(($("#rolez").val()/100)-0.5)*35;
+	 
+ 	 keyf.innerHTML = '@-webkit-keyframes spin { from {  -webkit-transform: translateZ('+z+'em) rotateX(0deg) rotateY(0deg); }  to  {-webkit-transform: translateZ('+z+'em) rotateX('+x+'deg) rotateY('+y+'deg);} } ';
+ 	 var v = $("#speed").val();
+ 	 var a= 500/v + "s";//时间，使速度变为线性
+ 	 $(".cube").css("-webkit-animation-duration",a);
+	 btn.innerHTML = v;
+	 tx.innerHTML = x;
+ 	 ty.innerHTML = y;
+ 	 tz.innerHTML = z;
+
+}
+ </script>
+</head>
+
+
+<body>  
+  
+  
+<div class="stage">  
+    <div class="cube">
+        <div class="font"></div>  
+        <div class="back"></div>  
+        <div class="left"></div>  
+        <div class="right"></div>  
+        <div class="top"></div>  
+        <div class="bottom"></div>  
+    </div>  
+</div>
+ 
+<div id="control">
+	&ensp;&#10059;&ensp;<b>设置</b><br />
+	<div id="mb">
+		<span class="bt">旋转速度：</span><br /><span class="lis">v</span>
+		<input type="range" id="speed"/><button id="btn">ok</button><br /><br />
+	
+		<span class="bt">旋转角度：</span><br /><span class="lis">x</span>
+		<input type="range" id="rolex" step="10" /><span id="tx"></span><br /><br />
+		<span class="lis">y</span>
+		<input type="range" id="roley" step="10"/><span id="ty"></span><br /><br />
+		<span class="bt">cube大小：</span><br /><span class="lis">z</span>
+		<input type="range" id="rolez" step="1"/><span id="tz"></span><br />
+		<div id="cc" onclick="changecolor()">Change color</div>
+	</div>
+	<div style="width:260px;margin:0 auto;color:gray;text-align:center;font-size:12px;">&copy; 2017.H</div>
+</div>
+	
+	<script>
+        var change = function($input) {
+			changeA();
+			console.log("ok");
+         }
+
+        $('#speed').RangeSlider({ min: 0,   max: 100,  step: 0.1,  callback: change});
+		$('#rolex').RangeSlider({ min: 0,   max: 100,  step: 1,  callback: change});
+		$('#roley').RangeSlider({ min: 0,   max: 100,  step: 1,  callback: change});
+		$('#rolez').RangeSlider({ min: 0,   max: 100,  step: 1,  callback: change});
+
+    </script>
+
+</body>
+</html>
