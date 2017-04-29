@@ -1,0 +1,17 @@
+html{  
+           background: -webkit-radial-gradient(center, ellipse, #430d6d 0%, #000000 100%);  
+           background: radial-gradient(ellipse at center, #430d6d 0%, #000000 100%);  
+         
+     }    
+ .cube *{  
+     background: -webkit-linear-gradient(left, rgba(54, 226, 248, 0.5) 0px, rgba(54, 226, 248, 0.5) 3px, rgba(0, 0, 0, 0) 0px), -webkit-linear-gradient(top, rgba(54, 226, 248, 0.5) 0px, rgba(54, 226, 248, 0.5) 3px, rgba(0, 0, 0, 0) 0px);  
+     background-color: rgba(0, 0, 0, 0.5);  
+     border: 2px solid rgba(54, 226, 248, 0.5);  
+     -webkit-box-shadow: 0 0 5em rgba(0, 128, 0, 0.4); 
+   } 
+.cube *:before  
+    {  
+        background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0) 30%, rgba(0, 128, 0, 0.2) 100%);  
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 30%, rgba(0, 128, 0, 0.2) 100%);  
+ 
+    }  
